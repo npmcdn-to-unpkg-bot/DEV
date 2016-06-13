@@ -243,3 +243,6 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
+/angular2-Startup/
+/Template-api-netFramework/
+/WebSites/AddUserMAnagerWebsite
