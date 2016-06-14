@@ -14,6 +14,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json.Serialization;
 
 namespace AdUserSite
 {
@@ -44,7 +45,8 @@ namespace AdUserSite
             options.UseSqlServer(sqlConnectionString));
 
             // Add framework services.
-            services.AddMvc();
+            services.AddMvc()
+                .AddJsonOptions(opt=> opt.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -52,6 +54,14 @@ namespace AdUserSite
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
+
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
+            app.Run(ctx =>
+            {
+                ctx.Response.Redirect("/index.html");
+                return Task.FromResult(0);
+            });
 
             app.UseMvc();
         }

@@ -40,3 +40,4 @@ namespace AdUserSite._01_DataAccess
         public DbSet<User> Users { get; set; }
     }
 }
+//TODO: LDAP://OU=Users,OU=SDMC,DC=sdmc,DC=ao-srv,DC=com (ldap://OU=Users,OU=SDMC,DC=sdmc,DC=ao-srv,DC=com/)
